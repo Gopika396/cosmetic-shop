@@ -30,22 +30,49 @@ img {
   max-width: 100%;
 }
 
-/* NAVBAR */
+/* =========================
+   NAVBAR AND BRAND LOGO
+========================= */
 
 .aura-navbar {
-  background: #fffaf7;
-  padding: 18px 0;
-  border-bottom: 1px solid #eadfe8;
+  position: relative;
   z-index: 1000;
+  padding: 14px 0;
+  background: #fffaf7;
+  border-bottom: 1px solid #eadfe8;
+}
+
+.aura-navbar .container {
+  gap: 20px;
 }
 
 .aura-navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  color: var(--aura-dark);
+  text-decoration: none;
+}
+
+.aura-navbar-logo {
+  display: block;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+.aura-navbar-text {
   color: var(--aura-dark);
   font-size: 28px;
   font-weight: 800;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
-.aura-navbar .navbar-brand span {
+.aura-navbar-text > span {
   color: var(--aura-accent);
   font-family: Georgia, serif;
   font-style: italic;
@@ -66,6 +93,15 @@ img {
   color: var(--aura-purple);
 }
 
+.aura-navbar .navbar-toggler {
+  border-color: #d9c5dc;
+  padding: 7px 10px;
+}
+
+.aura-navbar .navbar-toggler:focus {
+  box-shadow: 0 0 0 3px #704b7920;
+}
+
 .aura-count {
   display: inline-flex;
   align-items: center;
@@ -73,30 +109,59 @@ img {
   min-width: 21px;
   height: 21px;
   margin-left: 4px;
+  padding: 0 5px;
   border-radius: 50%;
   color: white;
   background: var(--aura-purple);
   font-size: 11px;
 }
 
-/* HERO SECTION */
+/* =========================
+   GENERAL BUTTONS
+========================= */
 
-.aura-hero {
-  background: #f3e8f5;
-  padding: 90px 0;
+.aura-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 23px;
+  border: 0;
+  color: white;
+  background: var(--aura-purple);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
 }
 
-.aura-hero .container {
-  padding-top: 20px;
+.aura-button:hover {
+  color: white;
+  background: var(--aura-dark);
+  transform: translateY(-2px);
 }
 
 .aura-eyebrow {
   display: inline-block;
+  margin-bottom: 17px;
   color: var(--aura-purple);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 2.5px;
-  margin-bottom: 17px;
+}
+
+/* =========================
+   HOMEPAGE HERO
+========================= */
+
+.aura-hero {
+  padding: 75px 0 85px;
+  background: #f3e8f5;
+}
+
+.aura-hero .container {
+  padding-top: 20px;
 }
 
 .aura-hero h1 {
@@ -121,30 +186,8 @@ img {
 
 .aura-hero p {
   max-width: 440px;
-  color: var(--aura-muted);
   margin: 25px 0;
-}
-
-.aura-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border: 0;
-  padding: 14px 23px;
-  color: white;
-  background: var(--aura-purple);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.25s;
-}
-
-.aura-button:hover {
-  background: var(--aura-dark);
-  color: white;
-  transform: translateY(-2px);
+  color: var(--aura-muted);
 }
 
 .aura-hero-note {
@@ -157,12 +200,12 @@ img {
   margin-right: 8px;
 }
 
-/* HERO IMAGE - FULL IMAGE VISIBLE */
+/* Full hero image: no cropping */
 
 .aura-hero-image {
+  position: relative;
   width: 100%;
   height: 430px;
-  position: relative;
   overflow: hidden;
   background: #f3d9e0;
 }
@@ -182,8 +225,8 @@ img {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  background: white;
   padding: 20px;
+  background: white;
   text-align: center;
 }
 
@@ -197,7 +240,9 @@ img {
   font: italic 25px Georgia, serif;
 }
 
-/* SECTION HEADINGS */
+/* =========================
+   SECTION HEADINGS
+========================= */
 
 .aura-section {
   padding-top: 85px;
@@ -213,15 +258,17 @@ img {
 .aura-section-heading h1,
 .aura-section-heading h2 {
   font-size: clamp(32px, 4vw, 47px);
-  line-height: 1.2;
   font-weight: 800;
+  line-height: 1.2;
 }
 
 .aura-section-heading p {
   color: var(--aura-muted);
 }
 
-/* HOMEPAGE SKIN TYPE CARDS */
+/* =========================
+   HOMEPAGE SKIN TYPE CARDS
+========================= */
 
 .aura-types {
   padding: 65px 0;
@@ -235,7 +282,7 @@ img {
   color: var(--aura-ink);
   background: #fff5f5;
   text-decoration: none;
-  transition: 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .aura-type-card:hover {
@@ -264,10 +311,13 @@ img {
   font-weight: 700;
 }
 
-/* PRODUCT CARDS */
+/* =========================
+   PRODUCT CARDS AND IMAGES
+========================= */
 
 .aura-product-card {
   height: 100%;
+  overflow: hidden;
   background: white;
   border: 1px solid #f0e6ec;
   transition: box-shadow 0.3s;
@@ -276,8 +326,6 @@ img {
 .aura-product-card:hover {
   box-shadow: 0 12px 30px #49304f12;
 }
-
-/* IMPORTANT: PRODUCT IMAGE CONTAINER */
 
 .aura-product-image {
   position: relative;
@@ -293,10 +341,9 @@ img {
   height: 100%;
   object-fit: contain;
   object-position: center;
-  transition: opacity 0.3s;
+  transition: none;
 }
 
-/* Do not zoom product photos on hover */
 .aura-product-card:hover .aura-product-image img {
   transform: none;
 }
@@ -305,6 +352,7 @@ img {
   position: absolute;
   top: 12px;
   left: 12px;
+  z-index: 1;
   padding: 7px 9px;
   background: white;
   font-size: 9px;
@@ -335,34 +383,34 @@ img {
 }
 
 .aura-product-bottom button {
-  border: 1px solid var(--aura-purple);
-  background: white;
-  color: var(--aura-purple);
   padding: 8px 12px;
+  border: 1px solid var(--aura-purple);
+  color: var(--aura-purple);
+  background: white;
   font-size: 12px;
   cursor: pointer;
 }
 
 .aura-product-bottom button:hover {
-  background: var(--aura-purple);
   color: white;
+  background: var(--aura-purple);
 }
 
-/* PRODUCT FILTERS */
+/* Product filters */
 
 .aura-filters {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  flex-wrap: wrap;
   margin-bottom: 35px;
 }
 
 .aura-filters button {
   padding: 10px 18px;
   border: 1px solid #e0d0e2;
-  background: white;
   color: var(--aura-purple);
+  background: white;
   font-size: 12px;
   cursor: pointer;
 }
@@ -374,12 +422,14 @@ img {
 }
 
 .aura-results {
+  margin-bottom: 25px;
   color: var(--aura-muted);
   font-size: 13px;
-  margin-bottom: 25px;
 }
 
-/* DISCOVER BANNER */
+/* =========================
+   DISCOVER BANNER
+========================= */
 
 .aura-discover {
   padding: 75px 0;
@@ -393,8 +443,8 @@ img {
 
 .aura-discover p {
   max-width: 450px;
-  color: var(--aura-muted);
   margin: 20px 0;
+  color: var(--aura-muted);
 }
 
 .aura-discover-image {
@@ -406,11 +456,13 @@ img {
   background: #f7e6ec;
 }
 
-/* SKIN TYPE HERO */
+/* =========================
+   SKIN TYPE HERO
+========================= */
 
 .skin-type-hero {
-  background: #f3e8f5;
   padding: 85px 0 90px;
+  background: #f3e8f5;
 }
 
 .skin-type-hero .container {
@@ -420,18 +472,18 @@ img {
 .skin-type-hero h1 {
   max-width: 750px;
   font-size: clamp(42px, 6vw, 68px);
-  line-height: 1.15;
   font-weight: 800;
+  line-height: 1.15;
   letter-spacing: -2px;
 }
 
 .skin-type-hero p {
   max-width: 560px;
-  color: var(--aura-muted);
   margin: 20px 0 28px;
+  color: var(--aura-muted);
 }
 
-/* SKIN TYPE PRODUCT IMAGES */
+/* Skin type cards */
 
 .skin-type-card {
   height: 100%;
@@ -465,9 +517,10 @@ img {
   position: absolute;
   top: 13px;
   left: 13px;
+  z-index: 1;
   padding: 7px 10px;
-  background: #fffaf7;
   color: var(--aura-purple);
+  background: #fffaf7;
   font-size: 9px;
   letter-spacing: 1.5px;
 }
@@ -543,7 +596,7 @@ img {
   color: #b56f96;
 }
 
-/* SKIN TIPS */
+/* Skincare tips */
 
 .skin-tips-section {
   padding: 80px 0;
@@ -575,7 +628,7 @@ img {
   line-height: 1.9;
 }
 
-/* SKIN TYPE CTA */
+/* Skin guide CTA */
 
 .skin-routine-box {
   display: flex;
@@ -611,7 +664,9 @@ img {
   background: #f8e7e9;
 }
 
-/* ABOUT */
+/* =========================
+   ABOUT PAGE
+========================= */
 
 .aura-about-image {
   display: block;
@@ -624,8 +679,8 @@ img {
 
 .aura-about-title {
   font-size: clamp(40px, 5vw, 58px);
-  line-height: 1.15;
   font-weight: 800;
+  line-height: 1.15;
 }
 
 .aura-section .col-lg-6 > p {
@@ -656,7 +711,9 @@ img {
   font-size: 13px;
 }
 
-/* CART */
+/* =========================
+   CART PAGE
+========================= */
 
 .aura-empty-cart {
   padding: 65px 20px;
@@ -676,8 +733,8 @@ img {
 }
 
 .aura-empty-cart p {
-  color: var(--aura-muted);
   margin-bottom: 25px;
+  color: var(--aura-muted);
 }
 
 .aura-cart-item {
@@ -711,14 +768,14 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  border: 1px solid #e0d0e2;
   padding: 4px 9px;
+  border: 1px solid #e0d0e2;
 }
 
 .aura-quantity button {
   border: 0;
-  background: transparent;
   color: var(--aura-purple);
+  background: transparent;
   cursor: pointer;
 }
 
@@ -730,8 +787,8 @@ img {
   display: block;
   margin: 10px 0 0 auto;
   border: 0;
-  background: transparent;
   color: #a35c75;
+  background: transparent;
   font-size: 12px;
   cursor: pointer;
 }
@@ -754,26 +811,28 @@ img {
 }
 
 .aura-grand-total {
-  border-top: 1px solid #decbdc;
   padding-top: 20px;
+  border-top: 1px solid #decbdc;
   font-size: 16px;
 }
 
 .aura-continue {
   display: block;
-  text-align: center;
   margin-top: 18px;
   color: var(--aura-purple);
+  text-align: center;
   font-size: 13px;
 }
 
-/* CONTACT */
+/* =========================
+   CONTACT PAGE
+========================= */
 
 .aura-contact-layout {
   display: grid;
   grid-template-columns: 0.85fr 1.15fr;
-  gap: 45px;
   align-items: start;
+  gap: 45px;
 }
 
 .aura-contact-info {
@@ -823,8 +882,8 @@ img {
 .aura-contact-form .form-control,
 .aura-contact-form .form-select {
   padding: 13px;
-  border-radius: 0;
   border-color: #e0d0e2;
+  border-radius: 0;
 }
 
 .aura-contact-form .form-control:focus,
@@ -834,13 +893,15 @@ img {
 }
 
 .aura-success {
-  padding: 15px;
   margin-top: 20px;
-  background: var(--aura-pink);
+  padding: 15px;
   color: var(--aura-dark);
+  background: var(--aura-pink);
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 .aura-footer {
   padding: 60px 0 0;
@@ -903,13 +964,15 @@ img {
   font-size: 12px;
 }
 
-/* TABLET */
+/* =========================
+   TABLET RESPONSIVE
+========================= */
 
 @media (max-width: 991px) {
   .aura-navbar .navbar-nav {
+    align-items: stretch !important;
     gap: 3px;
     padding: 15px 0;
-    align-items: stretch !important;
   }
 
   .aura-hero {
@@ -941,25 +1004,35 @@ img {
     text-align: center;
   }
 
-  .aura-footer p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
   .aura-socials {
     justify-content: center;
   }
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
 
 @media (max-width: 575px) {
   .aura-navbar {
-    padding: 14px 0;
+    padding: 12px 0;
   }
 
-  .aura-navbar .navbar-brand {
-    font-size: 24px;
+  .aura-navbar .container {
+    gap: 10px;
+  }
+
+  .aura-navbar-logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .aura-navbar-text {
+    font-size: 23px;
+  }
+
+  .aura-navbar .navbar-nav {
+    padding: 12px 0;
   }
 
   .aura-hero {
@@ -1044,8 +1117,8 @@ img {
   }
 
   .aura-cart-item {
-    gap: 10px;
     align-items: flex-start;
+    gap: 10px;
   }
 
   .aura-cart-item > img {
@@ -1065,8 +1138,18 @@ img {
     gap: 8px;
   }
 
+  /* Footer stays centered on mobile */
   .aura-footer {
     padding-top: 45px;
+    text-align: center;
+  }
+
+  .aura-footer .row > div {
+    text-align: center;
+  }
+
+  .aura-footer .col-lg-3 a,
+  .aura-footer .col-lg-4 a {
     text-align: center;
   }
 

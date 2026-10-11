@@ -1,6 +1,12 @@
 
 import { useEffect, useState } from "react";
-import { Link, NavLink, Routes, Route, useLocation } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 import Home from "./components/Home";
 import Products from "./components/Products";
@@ -9,18 +15,25 @@ import Cart from "./components/Cart";
 import About from "./components/About";
 import Contact from "./components/Contact";
 
+import logo from "./assets/image/SkinAura Pastel Beauty Emblem.png";
+
 export default function App() {
   const [cart, setCart] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (window.AOS) window.AOS.refresh();
+
+    if (window.AOS) {
+      window.AOS.refresh();
+    }
   }, [location.pathname]);
 
   function addToCart(product) {
     setCart((previous) => {
-      const existing = previous.find((item) => item.id === product.id);
+      const existing = previous.find(
+        (item) => item.id === product.id
+      );
 
       if (existing) {
         return previous.map((item) =>
@@ -47,17 +60,31 @@ export default function App() {
   }
 
   function removeFromCart(id) {
-    setCart((previous) => previous.filter((item) => item.id !== id));
+    setCart((previous) =>
+      previous.filter((item) => item.id !== id)
+    );
   }
 
-  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cartCount = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
   return (
     <>
+      {/* NAVBAR */}
       <nav className="navbar navbar-expand-lg aura-navbar sticky-top">
         <div className="container">
           <Link to="/" className="navbar-brand">
-            Skin<span>Aura.</span>
+            <img
+              src={logo}
+              alt="SkinAura logo"
+              className="aura-navbar-logo"
+            />
+
+            <span className="aura-navbar-text">
+              Skin<span>Aura.</span>
+            </span>
           </Link>
 
           <button
@@ -72,54 +99,142 @@ export default function App() {
             <span className="navbar-toggler-icon" />
           </button>
 
-          <div className="collapse navbar-collapse" id="auraNav">
+          <div
+            className="collapse navbar-collapse"
+            id="auraNav"
+          >
             <div className="navbar-nav ms-auto align-items-lg-center">
-              <NavLink className="nav-link" to="/">Home</NavLink>
-              <NavLink className="nav-link" to="/products">Shop</NavLink>
-              <NavLink className="nav-link" to="/skin-types">Skin Types</NavLink>
-              <NavLink className="nav-link" to="/about">Our Story</NavLink>
-              <NavLink className="nav-link" to="/contact">Contact</NavLink>
-              <NavLink className="nav-link" to="/cart">
+              <NavLink
+                to="/"
+                end
+                className="nav-link"
+              >
+                Home
+              </NavLink>
+
+              <NavLink
+                to="/products"
+                className="nav-link"
+              >
+                Shop
+              </NavLink>
+
+              <NavLink
+                to="/skin-types"
+                className="nav-link"
+              >
+                Skin Types
+              </NavLink>
+
+              <NavLink
+                to="/about"
+                className="nav-link"
+              >
+                Our Story
+              </NavLink>
+
+              <NavLink
+                to="/contact"
+                className="nav-link"
+              >
+                Contact
+              </NavLink>
+
+              <NavLink
+                to="/cart"
+                className="nav-link aura-cart-link"
+              >
                 <i className="bi bi-bag" /> Cart
-                <span className="aura-count">{cartCount}</span>
+                <span className="aura-count">
+                  {cartCount}
+                </span>
               </NavLink>
             </div>
           </div>
         </div>
       </nav>
 
+      {/* PAGE CONTENT */}
       <main>
         <Routes>
-          <Route path="/" element={<Home addToCart={addToCart} />} />
-          <Route path="/products" element={<Products addToCart={addToCart} />} />
-          <Route path="/skin-types" element={<SkinType />} />
-          <Route path="/cart" element={
-            <Cart
-              cart={cart}
-              updateQuantity={updateQuantity}
-              removeFromCart={removeFromCart}
-            />
-          } />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<Home addToCart={addToCart} />} />
+          <Route
+            path="/"
+            element={<Home addToCart={addToCart} />}
+          />
+
+          <Route
+            path="/products"
+            element={<Products addToCart={addToCart} />}
+          />
+
+          <Route
+            path="/skin-types"
+            element={<SkinType />}
+          />
+
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                cart={cart}
+                updateQuantity={updateQuantity}
+                removeFromCart={removeFromCart}
+              />
+            }
+          />
+
+          <Route
+            path="/about"
+            element={<About />}
+          />
+
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+
+          <Route
+            path="*"
+            element={<Home addToCart={addToCart} />}
+          />
         </Routes>
       </main>
 
+      {/* FOOTER */}
       <footer className="aura-footer">
         <div className="container">
           <div className="row gy-4">
             <div className="col-lg-5">
-              <Link to="/" className="aura-footer-brand">SkinAura.</Link>
-              <p>Skincare for every skin story.</p>
+              <Link
+                to="/"
+                className="aura-footer-brand"
+              >
+                SkinAura.
+              </Link>
+
+              <p>
+                Skincare for every skin story.
+              </p>
+
               <div className="aura-socials">
-                <a href="https://www.instagram.com/" aria-label="Instagram">
+                <a
+                  href="https://www.instagram.com/"
+                  aria-label="Instagram"
+                >
                   <i className="bi bi-instagram" />
                 </a>
-                <a href="https://www.facebook.com/" aria-label="Facebook">
+
+                <a
+                  href="https://www.facebook.com/"
+                  aria-label="Facebook"
+                >
                   <i className="bi bi-facebook" />
                 </a>
-                <a href="https://www.pinterest.com/" aria-label="Pinterest">
+
+                <a
+                  href="https://www.pinterest.com/"
+                  aria-label="Pinterest"
+                >
                   <i className="bi bi-pinterest" />
                 </a>
               </div>
@@ -128,15 +243,15 @@ export default function App() {
             <div className="col-6 col-lg-3">
               <h5>Discover</h5>
               <Link to="/">Home</Link>
-              <Link to="/products">All products</Link>
-              <Link to="/skin-types">Skin type guide</Link>
+              <Link to="/products">All Products</Link>
+              <Link to="/skin-types">Skin Type Guide</Link>
             </div>
 
             <div className="col-6 col-lg-4">
               <h5>Customer Care</h5>
               <Link to="/about">About SkinAura</Link>
-              <Link to="/contact">Contact us</Link>
-              <Link to="/cart">Shopping bag</Link>
+              <Link to="/contact">Contact Us</Link>
+              <Link to="/cart">Shopping Bag</Link>
             </div>
           </div>
 
