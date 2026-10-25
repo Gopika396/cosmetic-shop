@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import {
   Link,
@@ -15,7 +14,7 @@ import Cart from "./components/Cart";
 import About from "./components/About";
 import Contact from "./components/Contact";
 
-import logo from "./assets/image/SkinAura Pastel Beauty Emblem.png";
+const logo = `${import.meta.env.BASE_URL}logo.png`;
 
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -104,39 +103,23 @@ export default function App() {
             id="auraNav"
           >
             <div className="navbar-nav ms-auto align-items-lg-center">
-              <NavLink
-                to="/"
-                end
-                className="nav-link"
-              >
+              <NavLink to="/" end className="nav-link">
                 Home
               </NavLink>
 
-              <NavLink
-                to="/products"
-                className="nav-link"
-              >
+              <NavLink to="/products" className="nav-link">
                 Shop
               </NavLink>
 
-              <NavLink
-                to="/skin-types"
-                className="nav-link"
-              >
+              <NavLink to="/skin-types" className="nav-link">
                 Skin Types
               </NavLink>
 
-              <NavLink
-                to="/about"
-                className="nav-link"
-              >
+              <NavLink to="/about" className="nav-link">
                 Our Story
               </NavLink>
 
-              <NavLink
-                to="/contact"
-                className="nav-link"
-              >
+              <NavLink to="/contact" className="nav-link">
                 Contact
               </NavLink>
 
@@ -167,10 +150,7 @@ export default function App() {
             element={<Products addToCart={addToCart} />}
           />
 
-          <Route
-            path="/skin-types"
-            element={<SkinType />}
-          />
+          <Route path="/skin-types" element={<SkinType />} />
 
           <Route
             path="/cart"
@@ -183,15 +163,9 @@ export default function App() {
             }
           />
 
-          <Route
-            path="/about"
-            element={<About />}
-          />
+          <Route path="/about" element={<About />} />
 
-          <Route
-            path="/contact"
-            element={<Contact />}
-          />
+          <Route path="/contact" element={<Contact />} />
 
           <Route
             path="*"
@@ -205,16 +179,11 @@ export default function App() {
         <div className="container">
           <div className="row gy-4">
             <div className="col-lg-5">
-              <Link
-                to="/"
-                className="aura-footer-brand"
-              >
+              <Link to="/" className="aura-footer-brand">
                 SkinAura.
               </Link>
 
-              <p>
-                Skincare for every skin story.
-              </p>
+              <p>Skincare for every skin story.</p>
 
               <div className="aura-socials">
                 <a
